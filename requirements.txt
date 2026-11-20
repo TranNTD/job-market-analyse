@@ -1,0 +1,4 @@
+requests
+psycopg[binary]
+python-dotenv   # read environment variables from .env file
+pytest
