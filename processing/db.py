@@ -1,4 +1,5 @@
 import os
+
 import psycopg
 from dotenv import load_dotenv
 
@@ -10,16 +11,22 @@ def get_connection() -> psycopg.Connection:
         psycopg.Connection: A connection object to the PostgreSQL database.
     """
     load_dotenv()  # Load environment variables from .env file
+    variables = ["POSTGRES_HOST", "POSTGRES_PORT", "POSTGRES_DB", "POSTGRES_USER", "POSTGRES_PASSWORD"]
 
-    # Retrieve database connection parameters from environment variables
-    db_host = os.getenv("POSTGRES_HOST")
-    db_port = os.getenv("POSTGRES_PORT")
-    db_name = os.getenv("POSTGRES_DB")
-    db_user = os.getenv("POSTGRES_USER")
-    db_password = os.getenv("POSTGRES_PASSWORD")
-
-    # Create a connection string
-    conn_str = f"host={db_host} port={db_port} dbname={db_name} user={db_user} password={db_password}"
+    # fail fast if any required environment variable is missing
+    config = {}
+    missing_vars  = []
+    for var in variables:
+        val = os.getenv(var)
+        config[var] = val
+        if val is None or val == "":
+            missing_vars.append(var)
+    if len(missing_vars) > 0:
+        raise ValueError(f"Required environment variables {missing_vars} are not set.")
 
     # Establish and return the database connection
-    return psycopg.connect(conn_str)
+    return psycopg.connect(host=config["POSTGRES_HOST"]
+                           , port=config["POSTGRES_PORT"]
+                           , dbname=config["POSTGRES_DB"]
+                           , user=config["POSTGRES_USER"]
+                           , password=config["POSTGRES_PASSWORD"])
