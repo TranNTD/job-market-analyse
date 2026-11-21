@@ -1,4 +1,5 @@
 from processing.db import get_connection
+import pytest
 
 def test_pytest_works():
     """
@@ -17,3 +18,16 @@ def test_db_connection():
             assert result.fetchone()[0] == 1
     except Exception as e:
         assert False, f"Database connection test failed with error: {e}"
+
+REQUIRED_ENV_VARS = ["POSTGRES_HOST", "POSTGRES_PORT", "POSTGRES_DB", "POSTGRES_USER", "POSTGRES_PASSWORD"]
+
+@pytest.mark.parametrize("var", REQUIRED_ENV_VARS)
+def test_missing_env_vars(monkeypatch, var):
+    """
+    Test to verify that the get_connection function raises an error when required environment variables are missing.
+    """
+    # Clear environment variables
+    monkeypatch.setenv(var, "")
+
+    with pytest.raises(ValueError, match = var):
+        get_connection()
