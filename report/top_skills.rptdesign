@@ -116,9 +116,73 @@
             <xml-property name="queryText"><![CDATA[select skill, category, job_count, share_pct
 from v_top_skills]]></xml-property>
         </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="overview" id="6">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">relevant_jobs</property>
+                    <text-property name="displayName">relevant_jobs</text-property>
+                    <text-property name="heading">relevant_jobs</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">relevant_jobs</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">ba_jobs_db</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">relevant_jobs</property>
+                    <property name="nativeName">relevant_jobs</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select COUNT(*) AS relevant_jobs
+from v_relevant_jobs]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>relevant_jobs</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Unknown</design:nullability>
+            <design:uiHints>
+              <design:displayName>relevant_jobs</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>relevant_jobs</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
+            <property name="leftMargin">1.5in</property>
+            <property name="rightMargin">1.5in</property>
             <page-footer>
                 <text id="3">
                     <property name="contentType">html</property>
@@ -127,4 +191,113 @@ from v_top_skills]]></xml-property>
             </page-footer>
         </simple-master-page>
     </page-setup>
+    <body>
+        <label id="7">
+            <property name="fontSize">18pt</property>
+            <property name="fontWeight">bold</property>
+            <text-property name="text">Skills für Business Analysts in Finanzbranche</text-property>
+        </label>
+        <text-data id="52">
+            <property name="dataSet">overview</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">relevant_jobs</property>
+                    <text-property name="displayName">relevant_jobs</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["relevant_jobs"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <expression name="valueExpr">"Basis: " + row["relevant_jobs"] + " relevante Stellenanzeigen, Region Frankfurt"</expression>
+            <property name="contentType">html</property>
+        </text-data>
+        <table id="23">
+            <property name="dataSet">top_skills</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">skill</property>
+                    <text-property name="displayName">skill</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["skill"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">category</property>
+                    <text-property name="displayName">category</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["category"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">job_count</property>
+                    <text-property name="displayName">job_count</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["job_count"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">share_pct</property>
+                    <text-property name="displayName">share_pct</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["share_pct"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <column id="47"/>
+            <column id="48"/>
+            <column id="49"/>
+            <column id="50"/>
+            <header>
+                <row id="24">
+                    <cell id="25">
+                        <label id="26">
+                            <text-property name="text">skill</text-property>
+                        </label>
+                    </cell>
+                    <cell id="27">
+                        <label id="28">
+                            <text-property name="text">category</text-property>
+                        </label>
+                    </cell>
+                    <cell id="29">
+                        <label id="30">
+                            <text-property name="text">job_count</text-property>
+                        </label>
+                    </cell>
+                    <cell id="31">
+                        <label id="32">
+                            <text-property name="text">share_pct</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="33">
+                    <cell id="34">
+                        <data id="35">
+                            <property name="resultSetColumn">skill</property>
+                        </data>
+                    </cell>
+                    <cell id="36">
+                        <data id="37">
+                            <property name="resultSetColumn">category</property>
+                        </data>
+                    </cell>
+                    <cell id="38">
+                        <data id="39">
+                            <property name="resultSetColumn">job_count</property>
+                        </data>
+                    </cell>
+                    <cell id="40">
+                        <data id="41">
+                            <property name="resultSetColumn">share_pct</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="42">
+                    <cell id="43"/>
+                    <cell id="44"/>
+                    <cell id="45"/>
+                    <cell id="46"/>
+                </row>
+            </footer>
+        </table>
+    </body>
 </report>
