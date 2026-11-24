@@ -20,3 +20,4 @@ unit tests  - test local data-cases without db
 integration tests - test data cases on db
 conftest.py - support intergration tests with db_conn
 terminal: pytest -v
+pytest.mark.parametrize
