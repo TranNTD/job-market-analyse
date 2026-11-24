@@ -21,3 +21,30 @@ integration tests - test data cases on db
 conftest.py - support intergration tests with db_conn
 terminal: pytest -v
 pytest.mark.parametrize
+
+# Git
+## Tag
+git tag                          # list all tags
+git show v0.2.0                  # show the tag message and the commit
+git tag -d v0.2.0                # delete a tag locally (e.g. if it was set on the wrong commit)
+git push origin --delete v0.2.0  # also delete it on GitHub
+
+A tag is a readable name that permanently points to one specific commit:
+main:  ●───●───●───●───●───●   ← main keeps moving with new commits
+                   │       │
+               v0.1.0   v0.2.0  ← tags stay where they were set
+           (Phase 0 done) (MVP: first PDF)
+Advantages: 
+    - Go back to a version: git switch --detach v0.2.0 shows the project exactly as it was at the MVP. (git switch main brings you back.)
+    - Compare versions: git diff v0.1.0 v0.2.0 --stat shows everything that changed between Phase 0 and the MVP.
+    - Show progress: In job applications, a list of versions shows how the project grew step by step.
+    
+What the version number means: Semantic Versioning
+    v 0 . 2 . 0
+  │   │   └── PATCH: small fixes
+  │   └────── MINOR: new features
+  └────────── MAJOR: big, incompatible changes
+
+# BIRT
+Cannot show Bar-chart in Preview but work with export (in PDF)
+
