@@ -38,7 +38,7 @@ Advantages:
     - Go back to a version: git switch --detach v0.2.0 shows the project exactly as it was at the MVP. (git switch main brings you back.)
     - Compare versions: git diff v0.1.0 v0.2.0 --stat shows everything that changed between Phase 0 and the MVP.
     - Show progress: In job applications, a list of versions shows how the project grew step by step.
-    
+
 What the version number means: Semantic Versioning
     v 0 . 2 . 0
   │   │   └── PATCH: small fixes
@@ -48,3 +48,5 @@ What the version number means: Semantic Versioning
 # BIRT
 Cannot show Bar-chart in Preview but work with export (in PDF)
 
+# run_report.ps1
+use birt birt-runtime\ReportEngine to export pdf-report
