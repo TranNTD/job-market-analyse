@@ -1,3 +1,4 @@
+![CI](https://github.com/TranNTD/job-market-analyse/actions/workflows/ci.yml/badge.svg)
 # Job-Market-Analyse: Skills für Business Analysts in der Finanzbranche
 
 Dieses Projekt sammelt aktuelle Stellenanzeigen für Business Analysts im Raum Frankfurt,
