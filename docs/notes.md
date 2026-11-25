@@ -39,6 +39,21 @@ conftest.py - support intergration tests with db_conn
 terminal: pytest -v
 pytest.mark.parametrize
 
+# Java
+In Java, all code must be inside a class.
+
+## BIRT
+### SETUP
+    - EngineConfig config = new EngineConfig();
+    - Platform.startup(config);
+    - IReportEngineFactory factory = 
+    - IReportEngine
+Cannot show Bar-chart in Preview but work with export (in PDF)
+java -cp "C:\Users\trann\dev\tools\birt-runtime\ReportEngine\lib\*;C:\Users\trann\dev\tools\jdbc\postgresql-42.x.x.jar" report\src\ReportRunner.java
+
+### Catch Errors:
+Why: BIRT doesn't always crash when something goes wrong. Instead, it collects errors and may still write an incomplete PDF.
+
 # Git
 ## Tag
 git tag                          # list all tags
@@ -62,8 +77,10 @@ What the version number means: Semantic Versioning
   │   └────── MINOR: new features
   └────────── MAJOR: big, incompatible changes
 
-# BIRT
-Cannot show Bar-chart in Preview but work with export (in PDF)
 
 # run_report.ps1
 use birt birt-runtime\ReportEngine to export pdf-report
+
+## Export output
+in cmd/terminal: .\report\run_report.ps1 pdf # or pptx
+

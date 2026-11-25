@@ -42,7 +42,7 @@ public class ReportRunner {
             IReportRunnable report = engine.openReportDesign(design);
             IRunAndRenderTask task = engine.createRunAndRenderTask(report);
 
-            // 4. Extensions: Format is read from args[0], "pdf" as default, only "pdf" and "pptx" allowed
+            // 4. Extensions: Format is read from args[0], only "pdf" and "pptx" allowed
             // PDFRenderOption options = new PDFRenderOption();  // General Render option for both formats
             RenderOption options = new RenderOption();
             options.setOutputFormat(format);
