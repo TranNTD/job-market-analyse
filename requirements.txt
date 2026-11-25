@@ -1,4 +1,6 @@
 requests
+pandas
 psycopg[binary]
-python-dotenv   # read environment variables from .env file
+python-dotenv
+python-jobspy
 pytest

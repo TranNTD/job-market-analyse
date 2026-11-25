@@ -1,0 +1,58 @@
+name: CI
+
+# When should the workflow run
+on:
+  push:
+    branches: [main]  # after merging into main
+  pull_request:       # for every pull request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    # Service: postgresql database
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: ba_user
+          POSTGRES_PASSWORD: ci_password
+          POSTGRES_DB: ba_jobs
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ba_user -d ba_jobs"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    # Environment variables instead of a .env file (db.py reads it)
+    env:
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: "5432"
+      POSTGRES_DB: ba_jobs
+      POSTGRES_USER: ba_user
+      POSTGRES_PASSWORD: ci_password
+      PGPASSWORD: ci_password # for the psql command below
+
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+        
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        
+      - name: Create database schema
+        run: |
+          for f in sql/001_schema.sql sql/002_views.sql sql/003_add_source_columns.sql sql/004_relevant_jobs.sql; do 
+            psql -h localhost -U ba_user -d ba_jobs -v ON_ERROR_STOP=1 -f "$f"
+          done
+      
+      - name: Run tests
+        run: pytest -v
