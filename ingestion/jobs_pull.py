@@ -11,9 +11,9 @@ SEARCH_TERMS = ["business analyst bank", "business analyst finance",
 all_jobs = []
 for term in SEARCH_TERMS:
     all_jobs.append(scrape_jobs(
-        site_name=["indeed"],
+        site_name=["indeed", "linkedin"],
         search_term=term,
-        location="Frankfurt am Main",
+        location="Germany",
         distance=100,
         results_wanted=100,
         hours_old=168,
