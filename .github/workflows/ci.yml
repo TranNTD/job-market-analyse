@@ -50,7 +50,7 @@ jobs:
         
       - name: Create database schema
         run: |
-          for f in sql/001_schema.sql sql/002_views.sql sql/003_add_source_columns.sql sql/004_relevant_jobs.sql; do 
+          for f in sql/001_schema.sql sql/002_views.sql sql/003_add_source_column.sql sql/004_relevant_jobs.sql; do 
             psql -h localhost -U ba_user -d ba_jobs -v ON_ERROR_STOP=1 -f "$f"
           done
       
