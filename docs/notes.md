@@ -2,9 +2,26 @@
 docker compose up -d : Create Volume, Network, and Container
 docker compose ps : check status of docker
 docker compose down: remove Container, Network
-docker compose down -v: remove Container, Network and Volume
+docker compose down -v: remove Container, Network and Volume (completely delete)
 docker compose stop while pytest: test_db_connection cannot passed
 docker compose start: pytest works perfect
+
+## Downside of Docker
+Docker and the database then always run in the background and use memory, even on days when you're not working on the project. (if start automatically)
+Make a backup, especially before bigger changes:
+    docker exec ba_jobs_db pg_dump -U ba_user ba_jobs > backups\ba_jobs_2026-11-24.sql
+
+Free upu Disk space. Docker collects old, unused images over time:
+    docker system df          # how much space Docker uses
+    docker image prune        # removes unused images (your volume stays untouched)
+
+## routine with docker
+Start Docker Desktop, if it isn't running yet. Wait until it shows Engine running (green).
+In the project folder:
+    docker compose up -d
+    docker compose ps          # wait for "healthy"
+Ending a work session
+    docker compose stop         # This pauses the database and frees memory and CPU. The data stays.
 
 # SQL
 ON DELETE CASCADE: if delete one, the dependencies will also be deleted
