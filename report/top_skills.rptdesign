@@ -285,6 +285,14 @@ limit 10]]></xml-property>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="leftMargin">0.25in</property>
             <property name="rightMargin">0.25in</property>
+            <page-header>
+                <text id="55">
+                    <property name="contentType">auto</property>
+                    <text-property name="content"><![CDATA[<H1>Skill-Report: Business Analyst - Germany</H1>
+
+]]></text-property>
+                </text>
+            </page-header>
             <page-footer>
                 <text id="3">
                     <property name="contentType">html</property>
@@ -297,7 +305,7 @@ limit 10]]></xml-property>
         <label id="7">
             <property name="fontSize">18pt</property>
             <property name="fontWeight">bold</property>
-            <text-property name="text">Skills für Business Analysts in Finanzbranche</text-property>
+            <text-property name="text">Job-market Analyse : Bussiness Analyst in Finanzbranche</text-property>
         </label>
         <text-data id="52">
             <property name="dataSet">overview</property>
@@ -309,7 +317,7 @@ limit 10]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <expression name="valueExpr">"Basis: " + row["relevant_jobs"] + " relevante Stellenanzeigen, Region Frankfurt"</expression>
+            <expression name="valueExpr">"Basis: " + row["relevant_jobs"] + " relevante Stellenanzeigen, Region Germany"</expression>
             <property name="contentType">html</property>
         </text-data>
         <extended-item extensionName="Chart" id="54">

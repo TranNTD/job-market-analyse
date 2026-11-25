@@ -84,3 +84,5 @@ use birt birt-runtime\ReportEngine to export pdf-report
 ## Export output
 in cmd/terminal: .\report\run_report.ps1 pdf # or pptx
 
+# ci.yml - GitHub Actions
+defind jobs: testing the workflow and early stop, prevent pushing on main branch failed test.
