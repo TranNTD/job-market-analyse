@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.27" id="1">
+    <property name="author">Dung Tran</property>
     <property name="createdBy">Eclipse BIRT Designer Version 4.25.0.v202608160751</property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
@@ -281,27 +282,95 @@ limit 10]]></xml-property>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
     </data-sets>
+    <styles>
+        <style name="report" id="56">
+            <property name="fontFamily">"Arial"</property>
+            <property name="fontSize">9pt</property>
+        </style>
+        <style name="sidebar" id="57">
+            <property name="backgroundColor">#B4C7E7</property>
+            <property name="color">#0000A0</property>
+            <property name="paddingTop">8pt</property>
+            <property name="paddingLeft">8pt</property>
+            <property name="paddingBottom">8pt</property>
+            <property name="paddingRight">8pt</property>
+        </style>
+        <style name="section-heading" id="58">
+            <property name="fontFamily">"Arial"</property>
+            <property name="fontSize">11pt</property>
+            <property name="color">#1F3864</property>
+            <property name="paddingBottom">4pt</property>
+        </style>
+        <style name="foonote" id="59">
+            <property name="fontFamily">"Arial"</property>
+            <property name="fontSize">7pt</property>
+            <property name="color">#7F7F7F</property>
+        </style>
+        <style name="title" id="69">
+            <property name="fontFamily">"Arial"</property>
+            <property name="fontSize">16pt</property>
+            <property name="color">#1F3864</property>
+        </style>
+        <style name="subtitle" id="70">
+            <property name="fontFamily">"Arial"</property>
+            <property name="color">#595959</property>
+        </style>
+        <style name="footer-text" id="71">
+            <property name="fontFamily">"Arial"</property>
+            <property name="fontSize">7pt</property>
+            <property name="color">#7F7F7F</property>
+        </style>
+    </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="leftMargin">0.25in</property>
-            <property name="rightMargin">0.25in</property>
+            <property name="type">a4</property>
+            <property name="orientation">portrait</property>
+            <property name="topMargin">1.5cm</property>
+            <property name="leftMargin">1.8cm</property>
+            <property name="bottomMargin">1.2cm</property>
+            <property name="rightMargin">1.8cm</property>
             <page-header>
                 <text id="55">
                     <property name="contentType">auto</property>
-                    <text-property name="content"><![CDATA[<H1>Skill-Report: Business Analyst - Germany</H1>
-
+                    <text-property name="content"><![CDATA[
 ]]></text-property>
                 </text>
             </page-header>
-            <page-footer>
-                <text id="3">
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
-            </page-footer>
         </simple-master-page>
     </page-setup>
     <body>
+        <grid id="60">
+            <property name="width">100%</property>
+            <column id="61">
+                <property name="fontFamily">"Arial Black"</property>
+                <property name="width">30%</property>
+            </column>
+            <column id="62">
+                <property name="width">70%</property>
+            </column>
+            <row id="63">
+                <cell id="64">
+                    <property name="style">sidebar</property>
+                    <property name="verticalAlign">top</property>
+                    <label id="66">
+                        <property name="style">section-heading</property>
+                        <text-property name="text">Databasis</text-property>
+                    </label>
+                </cell>
+                <cell id="65">
+                    <property name="style">section-heading</property>
+                    <property name="paddingLeft">12pt</property>
+                    <property name="verticalAlign">top</property>
+                    <label id="67">
+                        <text-property name="text">Top-10-Skills [%]*</text-property>
+                    </label>
+                    <label id="68">
+                        <property name="style">foonote</property>
+                        <text-property name="text">* Anteil der Anzeigen, die den Skill mindestens einmal nennen.</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
         <label id="7">
             <property name="fontSize">18pt</property>
             <property name="fontWeight">bold</property>
